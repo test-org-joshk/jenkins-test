@@ -1,31 +1,25 @@
-pipeline {
-     
-     agent any
-     
-     stages {
-         
-         stage('build') {
-             steps {
-                 echo 'Building...'
-             }
-         }
 
-         stage('deploy to test') {
-             steps {
-                 echo 'Deploying...'
+pipeline {
+    agent  any
+    stages {
+        stage('deployments') {
+            parallel {
+                stage('deploy to stg') {
+                    steps {
+                        echo 'stg deployment done'
+                    }
+                }
+                stage('deploy to prod') {
+                    steps {
+                        echo 'prod deployment done'
+                    }
+                }
+            }
+           post {
+                 always {
+                     jiraSendBuildInfo branch: 'main'
+                 }
              }
-         }
-        
-         stage('deploy to staging') {
-             steps {
-                 echo 'Deploying...'
-             }
-         }
-         
-         stage('deploy to prod') {
-             steps {
-                 echo 'Deploying...'
-             }
-         }
-     }
- }
+        }
+    }
+}
