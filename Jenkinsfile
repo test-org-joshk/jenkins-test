@@ -9,7 +9,7 @@ pipeline {
                         echo 'stg deployment done'
                     }
                 }
-                stage('deploy to prod') {
+                stage('deploy to prod town') {
                     steps {
                         echo 'prod deployment done'
                     }
