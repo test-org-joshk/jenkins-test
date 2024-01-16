@@ -8,7 +8,7 @@ pipeline {
                     waitUntil {
                         sleep 30
                         checkGatingStatus(
-                          site:'<YOUR-SITE>.atlassian.net', 
+                          site:'joshkayjira.atlassian.net', 
                           environmentId:'us-prod-1'
                         )
                     }
