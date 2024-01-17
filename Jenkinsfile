@@ -2,7 +2,7 @@
 pipeline {
     agent  any
     stages {
-        stage('deployments') {
+        stage('deploymentsx') {
             parallel {
                 stage('deploy to stg') {
                     steps {
