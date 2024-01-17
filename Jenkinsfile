@@ -4,12 +4,11 @@ pipeline {
     stages {
         stage("Approval gate") { // Check request status
             steps {
-                retry(20) { // Poll every 30s for 10min
+                retry(5) { // Poll every 30s for 10min
                     waitUntil {
-                        sleep 30
+                        sleep 5
                         checkGatingStatus(
-                          site:'joshkayjira.atlassian.net', 
-                          environmentId:'us-prod-1'
+                          site:'joshkayjira.atlassian.net'
                         )
                     }
                 }   
