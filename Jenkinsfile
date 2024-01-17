@@ -9,7 +9,7 @@ pipeline {
                         sleep 5
                         checkGatingStatus(
                           site:'joshkayjira.atlassian.net',
-                            environmentId:'prod'
+                            environmentId:'us-prod-1'
                         )
                     }
                 }   
