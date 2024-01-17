@@ -8,7 +8,8 @@ pipeline {
                     waitUntil {
                         sleep 5
                         checkGatingStatus(
-                          site:'joshkayjira.atlassian.net'
+                          site:'joshkayjira.atlassian.net',
+                            environmentId:'prod'
                         )
                     }
                 }   
