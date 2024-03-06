@@ -11,6 +11,9 @@ pipeline {
                 }
             }
         }
+        stage('Checkout') {
+            checkout scm
+        }
         stage("Performing deployment") {
             steps {
                 echo "Deploying to ${params.envs} environment"
