@@ -11,7 +11,7 @@ pipeline {
                 }
             }
         }
-        stage('Checkout') {
+        stage('Checkout it') {
             checkout scm
         }
         stage("Performing deployment") {
