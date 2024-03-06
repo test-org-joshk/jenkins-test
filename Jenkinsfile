@@ -1,4 +1,5 @@
 pipeline {
+    agent  any
     parameters {
         choice choices: ['development', 'staging', 'production'], name: 'envs'
     }
