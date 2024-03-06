@@ -1,12 +1,4 @@
 pipeline {
-    agent {
-        kubernetes {
-            cloud 'kubernetes'
-        }
-    }
-    options {
-        ansiColor('xterm')
-    }
     parameters {
         choice choices: ['development', 'staging', 'production'], name: 'envs'
     }
@@ -26,7 +18,7 @@ pipeline {
                     environmentName: params.envs,
                     environmentType: params.envs,
                     serviceIds: [''],
-                    site: 'creativeadvtech.atlassian.net',
+                    site: 'test.atlassian.net',
                     state: 'successful'
                 )
              }
