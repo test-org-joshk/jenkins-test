@@ -19,7 +19,7 @@ pipeline {
                     environmentName: params.envs,
                     environmentType: params.envs,
                     serviceIds: [''],
-                    site: 'test.atlassian.net',
+                    site: 'joshkayjira.atlassian.net',
                     state: 'successful'
                 )
              }
