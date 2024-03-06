@@ -1,39 +1,31 @@
-
 pipeline {
     agent  any
+    parameters {
+        choice choices: ['development', 'staging', 'production'], name: 'envs'
+    }
     stages {
-        stage('deploymentsxyz') {
-            parallel {
-                stage('deploy to stg') {
-                    steps {
-                        echo 'stg deployment done'
-                    }
-                }
-                stage('deploy to prod') {
-                    steps {
-                        echo 'prod deployment done'
-                    }
+        stage('Setting deployment') {
+            steps {
+                script {
+                    currentBuild.description = "Deploying for the following ticket: ${params.issueKey}\n Deploying to the ${params.envs} environment"
                 }
             }
-           post {
-                 always {
-                     jiraSendBuildInfo branch: 'main'
-                 }
+        }
+        stage('Checkout') {
+            checkout scm
+        }
+        stage("Performing deployment") {
+            steps {
+                echo "Deploying to ${params.envs} environment"
+                jiraSendDeploymentInfo (
+                    environmentId: params.envs,
+                    environmentName: params.envs,
+                    environmentType: params.envs,
+                    serviceIds: [''],
+                    site: 'joshkayjira.atlassian.net',
+                    state: 'successful'
+                )
              }
         }
-        stage("Approval gate") { // Check request status
-            steps {
-                retry(5) { // Poll every 30s for 10min
-                    waitUntil {
-                        sleep 5
-                        checkGatingStatus(
-                          site:'joshkayjira.atlassian.net',
-                            environmentId:'us-prod-1'
-                        )
-                    }
-                }   
-            }
-        }
-        
     }
 }
